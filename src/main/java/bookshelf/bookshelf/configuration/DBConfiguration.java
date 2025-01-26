@@ -15,10 +15,10 @@ import org.springframework.context.annotation.PropertySource;
 import javax.sql.DataSource;
 
 @Configuration
-@PropertySource("classpath:/application.properties")
 public class DBConfiguration {
     @Autowired
     private ApplicationContext applicationContext;
+
     @Bean
     @ConfigurationProperties(prefix="spring.datasource.hikari")
     HikariConfig hikariConfig(){
@@ -26,9 +26,8 @@ public class DBConfiguration {
     }
 
     @Bean
-    DataSource dataSource() {
+    public DataSource dataSource() {
         DataSource dataSource = new HikariDataSource(hikariConfig());
-        System.out.println(dataSource);
         return dataSource;
     }
 

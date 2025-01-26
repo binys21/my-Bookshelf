@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bookshelf.bookshelf.mapper.BookMapper">
+    <select id="selectBookList" resultType="bookshelf.bookshelf.dto.BookDto">
+        select book_id, title, author, publisher,date_format(published_date, '%Y.%m.%d') as published_date, date_format(created_at, '%Y.%m.%d %H:%i:%s') as created_at
+        from Books
+        order by book_id desc
+    </select>
+</mapper>
+
+
