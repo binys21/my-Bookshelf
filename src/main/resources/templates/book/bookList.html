@@ -9,7 +9,9 @@
 </head>
 <body>
 <div class="container my-4">
+
     <h2 class="text-center mb-4">도서 목록</h2>
+    <a href="/book/register" class="btn btn-primary mb-3">도서 등록하기</a>
     <div class="row" th:if="${#lists.size(list)} > 0" th:each="book : ${list}">
         <div class="col-md-4">
             <div class="card book-card">

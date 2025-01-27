@@ -8,4 +8,5 @@ import java.util.List;
 @Mapper
 public interface BookMapper {
     List<BookDto> selectBookList();
+    void insertBook(BookDto bookDto);
 }

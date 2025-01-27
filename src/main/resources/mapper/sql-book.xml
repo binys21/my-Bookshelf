@@ -13,4 +13,9 @@
         from Books
         order by book_id desc
     </select>
+
+    <insert id="insertBook" parameterType="bookshelf.bookshelf.dto.BookDto">
+        INSERT INTO Books (title, author, publisher, published_date,isbn,description)
+        VALUES (#{title}, #{author}, #{publisher}, #{publishedDate},#{isbn},#{description})
+    </insert>
 </mapper>

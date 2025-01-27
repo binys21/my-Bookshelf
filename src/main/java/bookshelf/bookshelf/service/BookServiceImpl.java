@@ -4,10 +4,12 @@ import bookshelf.bookshelf.dto.BookDto;
 import bookshelf.bookshelf.mapper.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class BookServiceImpl implements BookService {
     @Autowired
     private BookMapper bookMapper;
@@ -15,5 +17,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookDto> selectBookList(){
         return bookMapper.selectBookList();
+    }
+    @Override
+    public void insertBook(BookDto bookDto) {
+        bookMapper.insertBook(bookDto);
     }
 }
