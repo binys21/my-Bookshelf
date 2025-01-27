@@ -13,10 +13,11 @@
     <h2 class="text-center mb-4">도서 목록</h2>
     <a href="/book/register" class="btn btn-primary mb-3">도서 등록하기</a>
     <div class="row" th:if="${#lists.size(list)} > 0" th:each="book : ${list}">
-        <div class="col-md-4">
-            <!-- 상세 페이지로 이동 -->
+        <div class="col-md-4" th:if="${book != null and book.title != null}">
+
+
             <a th:href="@{/book/openBookDetail(bookId=${book.bookId})}" class="card book-card">
-            <div class="card-body">
+                <div class="card-body">
                     <h5 class="book-title" th:text="${book.title}"></h5>
                     <p class="book-info">
                         <span th:text="'저자: ' + ${book.author}"></span><br />
@@ -25,9 +26,11 @@
                     </p>
                     <p class="text-muted" th:text="'등록일: ' + ${book.createdAt}"></p>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
+
+</div>
     <div class="alert alert-warning text-center" role="alert" th:unless="${#lists.size(list)} > 0">
         조회된 결과가 없습니다.
     </div>

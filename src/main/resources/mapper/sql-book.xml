@@ -19,7 +19,7 @@
         VALUES (#{title}, #{author}, #{publisher}, #{publishedDate},#{isbn},#{description})
     </insert>
 
-    <select id="selectBookDetail" resultType="bookshelf.bookshelf.dto.BookDto">
+    <select id="selectBookDetail" parameterType="int" resultType="bookshelf.bookshelf.dto.BookDto">
         select
             book_id as bookId,
             title,
@@ -30,6 +30,13 @@
             description
         from Books
         where book_id = #{bookId}
+          and title is not null
+          and author is not null
     </select>
+
+    <delete id="deleteBook" parameterType="int">
+        DELETE from Books
+        WHERE id=#{bookId}
+    </delete>
 
 </mapper>

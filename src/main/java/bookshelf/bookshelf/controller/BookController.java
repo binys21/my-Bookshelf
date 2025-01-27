@@ -5,10 +5,7 @@ import bookshelf.bookshelf.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -41,15 +38,21 @@ public class BookController {
 
     //상세 조회 요청
     @GetMapping("/book/openBookDetail")
-    public ModelAndView openBookDetail(@RequestParam("bookId") int bookId) throws Exception {
-        System.out.println("Received bookId: " + bookId);
+    public ModelAndView openBookDetail(@RequestParam(value = "bookId", required = true)
+                                           int bookId) throws Exception {
         BookDto bookDto = bookService.selectBookDetail(bookId);
-        if (bookDto == null) {
-            System.out.println("bookDto is null for bookId: " + bookId);
-        }
+        System.out.println("Received bookId: " + bookId);
+
         ModelAndView mv =new ModelAndView("book/bookDetail");
         mv.addObject("book",bookDto);
         return mv;
+    }
+
+    //삭제 요청 처리
+    @PostMapping("/book/delete/{bookId}")
+    public String deleteBook(@PathVariable("bookId") int bookId) throws Exception {
+        bookService.deleteBook(bookId);
+        return "redirect:/book/openBookList";
     }
 
 

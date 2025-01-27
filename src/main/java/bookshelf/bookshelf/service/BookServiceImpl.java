@@ -27,4 +27,8 @@ public class BookServiceImpl implements BookService {
         System.out.println("Fetching book details for bookId: " + bookId);
         return bookMapper.selectBookDetail(bookId);
     }
+    @Override
+    public void deleteBook(int bookId){
+        bookMapper.deleteBook(bookId);
+    }
 }

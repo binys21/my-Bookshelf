@@ -8,4 +8,6 @@ public interface BookService {
     List<BookDto> selectBookList();
     void insertBook(BookDto bookDto);
     BookDto selectBookDetail(int bookId);
+
+    void deleteBook(int bookId);
 }
