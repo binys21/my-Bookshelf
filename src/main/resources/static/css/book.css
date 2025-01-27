@@ -1,0 +1,89 @@
+
+.book-card {
+    margin-bottom: 20px;
+}
+
+.book-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.book-info {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #333;
+    font-weight: bold;
+}
+
+/* 책 카드 */
+.book-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 책 제목 */
+.book-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* 책 정보  */
+.book-info {
+    font-size: 1rem;
+    color: #777;
+}
+
+.book-info span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* 책 등록일 */
+.book-card .text-muted {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: 10px;
+}
+
+/* 경고 메시지 */
+.alert-warning {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    font-weight: bold;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .book-card {
+        padding: 15px;
+    }
+
+    .book-title {
+        font-size: 1.2rem;
+    }
+
+    .book-info {
+        font-size: 0.9rem;
+    }
+}
