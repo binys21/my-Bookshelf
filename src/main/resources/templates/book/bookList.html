@@ -30,7 +30,7 @@
                     <p class="book-info">
                         <span th:text="'저자: ' + ${book.author}"></span><br />
                         <span th:text="'출판사: ' + ${book.publisher}"></span><br />
-                        <span th:text="'출판일: ' + ${book.publishedDate}"></span>
+                        <span th:text="'출판일: ' + (${book.publishedDate} != null ? ${book.publishedDate} : '정보 없음')"></span>
                     </p>
                     <p class="text-muted" th:text="'등록일: ' + ${book.createdDt}"></p>
                 </div>

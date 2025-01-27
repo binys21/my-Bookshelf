@@ -16,7 +16,7 @@ public class BookController {
 
     @GetMapping("/book/openBookList")
     public ModelAndView openBookList() throws Exception {
-        ModelAndView mv =new ModelAndView("/book/bookList");
+        ModelAndView mv =new ModelAndView("book/bookList");
 
         List<BookDto> list = bookService.selectBookList();
         mv.addObject("list",list);
