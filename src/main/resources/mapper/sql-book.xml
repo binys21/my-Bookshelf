@@ -9,7 +9,7 @@
     <select id="selectBookList" resultMap="bookResultMap">
         select book_id, title, author, publisher,
                date_format(published_date, '%Y-%m-%d') as published_date,
-               date_format(created_at, '%Y-%m-%d') as created_at
+               date_format(created_at, '%Y-%m-%d') as createdAt
         from Books
         order by book_id desc
     </select>
@@ -18,4 +18,18 @@
         INSERT INTO Books (title, author, publisher, published_date,isbn,description)
         VALUES (#{title}, #{author}, #{publisher}, #{publishedDate},#{isbn},#{description})
     </insert>
+
+    <select id="selectBookDetail" resultType="bookshelf.bookshelf.dto.BookDto">
+        select
+            book_id as bookId,
+            title,
+            author,
+            publisher,
+            published_date as publishedDate,
+            isbn,
+            description
+        from Books
+        where book_id = #{bookId}
+    </select>
+
 </mapper>

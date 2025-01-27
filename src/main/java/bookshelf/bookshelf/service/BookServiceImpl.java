@@ -22,4 +22,9 @@ public class BookServiceImpl implements BookService {
     public void insertBook(BookDto bookDto) {
         bookMapper.insertBook(bookDto);
     }
+    @Override
+    public BookDto selectBookDetail(int bookId){
+        System.out.println("Fetching book details for bookId: " + bookId);
+        return bookMapper.selectBookDetail(bookId);
+    }
 }

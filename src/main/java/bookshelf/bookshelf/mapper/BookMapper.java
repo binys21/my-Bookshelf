@@ -9,4 +9,5 @@ import java.util.List;
 public interface BookMapper {
     List<BookDto> selectBookList();
     void insertBook(BookDto bookDto);
+    BookDto selectBookDetail(int bookId);
 }
