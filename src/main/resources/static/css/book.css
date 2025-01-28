@@ -16,7 +16,6 @@
     overflow: hidden;
 }
 
-/* 책 카드 호버  */
 .book-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
@@ -53,8 +52,8 @@
     font-size: 0.9rem;
     color: #aaa;
     margin-top: 15px;
-    text-align: left; /* 왼쪽 정렬 */
-    margin-top: auto; /* 도서 카드 아래쪽으로 위치하도록 배치 */
+    text-align: left;
+    margin-top: auto;
     text-align: center;
 }
 /* 경고 메시지 */
@@ -80,12 +79,12 @@
         font-size: 0.9rem;
     }
 }
-/* h2 제목 스타일 */
+
 h2 {
-    font-size: 2.5rem; /* 글씨 크기 더 크게 */
-    color: #333; /* 텍스트 색상 */
-    font-weight: bold; /* 굵은 글씨 */
-    background: linear-gradient(to right, #CDECFA,#FAFABE); /* 그라데이션 배경 */
-    padding: 10px 20px; /* 글씨 주변 여백 */
-    border-radius: 8px; /* 둥근 모서리 */
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: bold;
+    background: linear-gradient(to right, #CDECFA,#FAFABE);
+    padding: 10px 20px;
+    border-radius: 8px;
 }

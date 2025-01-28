@@ -1,9 +1,4 @@
-
-body {
-    background-color: #f7f7f7;
-    font-family: 'Arial', sans-serif;
-}
-
+/* 전체 컨테이너 */
 .container {
     max-width: 900px;
     margin: 0 auto;
@@ -12,6 +7,8 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 30px;
     margin-top: 50px;
+    position: relative;
+    padding-bottom: 80px;
 }
 
 /* 도서 제목 */
@@ -22,38 +19,64 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* 각 항목 제목 */
-h5 {
-    font-size: 1.25rem;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-/* 텍스트 */
-p {
-    font-size: 1rem;
-    color: #777;
-    line-height: 1.6;
-}
-
-/* 버튼 */
-.btn-secondary {
+/* 도서 정보 박스 */
+.book-info-box {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 20px;
     margin-top: 20px;
+    border: 2px solid #ddd;
+}
+
+/* 설명 텍스트 */
+.description-box {
+    background-color: #e0f7fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 2px solid #ddd;
+}
+
+.button-group {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 999;
+}
+
+.btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+/* 도서 목록으로 버튼 */
+.btn-secondary {
     background-color: #007bff;
     color: white;
-    border-radius: 4px;
-    padding: 10px 20px;
-    font-size: 1rem;
 }
 
 .btn-secondary:hover {
     background-color: #0056b3;
 }
 
-/* 설명 텍스트  */
-.description-box {
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 20px;
+/* 수정, 삭제 버튼 */
+.btn-primary {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
 }
