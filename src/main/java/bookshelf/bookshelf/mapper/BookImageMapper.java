@@ -6,4 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface BookImageMapper {
     void insertBookImage(BookImgDto bookImgDto);
+
+    BookImgDto getBookImageById(int imageId);
 }

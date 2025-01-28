@@ -4,4 +4,6 @@ import bookshelf.bookshelf.dto.BookImgDto;
 
 public interface BookImageService {
     void saveBookImage(BookImgDto bookImgDto);
+
+    BookImgDto getBookImageById(int imageId);
 }

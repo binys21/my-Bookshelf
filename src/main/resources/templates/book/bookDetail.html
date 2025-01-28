@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-4">
             <!-- 책 이미지 -->
-            <img th:src="${book.imageUrl}" alt="책 이미지" class="img-fluid rounded" onerror="this.src='/images/default-book.png'">
+            <img th:src="${book.imageUrl}" alt="책 이미지" class="img-fluid rounded" onerror="this.src='/images/default-book.jpg'">
 
             <!-- 이미지 업로드 폼 -->
             <form th:action="@{/book/uploadImage}" method="post" enctype="multipart/form-data" class="mt-3">

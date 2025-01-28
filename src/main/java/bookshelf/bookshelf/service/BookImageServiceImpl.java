@@ -14,5 +14,9 @@ public class BookImageServiceImpl implements BookImageService {
     public void saveBookImage(BookImgDto bookImgDto) {
         bookImageMapper.insertBookImage(bookImgDto);
     }
+    @Override
+    public BookImgDto getBookImageById(int imageId) {
+        bookImageMapper.getBookImageById(imageId);
+    }
 
 }
