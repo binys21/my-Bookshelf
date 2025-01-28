@@ -33,7 +33,7 @@
     </div>
 
     <a href="/book/openBookList" class="btn btn-secondary">도서 목록으로 돌아가기</a>
-    <input type="button" id="update" class="btn" value="수정" />
+    <a th:href="@{/book/update/{bookId}(bookId=${book.bookId})}" class="btn btn-primary">수정</a>
     <form th:action="@{/book/delete/{bookId}(bookId=${book.bookId})}" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
         <input type="submit" class="btn btn-danger" value="삭제" />
     </form>

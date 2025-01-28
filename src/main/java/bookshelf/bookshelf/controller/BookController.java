@@ -55,7 +55,7 @@ public class BookController {
         model.addAttribute("book", bookDto);
         return "book/update"; // 수정 페이지 뷰 파일을 반환
     }
-
+    //수정 요청 처리
     @PostMapping("/book/update")
     public String updateBook(@ModelAttribute BookDto bookDto) throws Exception {
         bookService.updateBook(bookDto);

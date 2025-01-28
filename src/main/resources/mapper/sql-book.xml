@@ -39,7 +39,7 @@
         WHERE id=#{bookId}
     </delete>
 
-    <update id="updateBook" parameterType="BookDto">
+    <update id="updateBook" parameterType="bookshelf.bookshelf.dto.BookDto">
         UPDATE books
         SET
             title = #{title},
