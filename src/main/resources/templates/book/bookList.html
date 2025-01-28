@@ -9,13 +9,12 @@
 </head>
 <body>
 <div class="container my-4">
+    <h2 class="text-center mb-4">✨📚 나의 독서 기록장 📚✨</h2>
+    <a href="/book/register" class="btn btn-primary mb-3">읽은 책 추가 🔖</a>
 
-    <h2 class="text-center mb-4">도서 목록</h2>
-    <a href="/book/register" class="btn btn-primary mb-3">도서 등록하기</a>
-    <div class="row" th:if="${#lists.size(list)} > 0" th:each="book : ${list}">
-        <div class="col-md-4" th:if="${book != null and book.title != null}">
-
-
+    <!-- 도서 목록을 그리드 형태로 배치 -->
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-12 mb-4" th:if="${#lists.size(list)} > 0" th:each="book : ${list}">
             <a th:href="@{/book/openBookDetail(bookId=${book.bookId})}" class="card book-card">
                 <div class="card-body">
                     <!-- 이미지 -->
@@ -26,8 +25,8 @@
                     <!-- 도서 정보 -->
                     <h5 class="book-title" th:text="${book.title}"></h5>
                     <p class="book-info">
-                        <span th:text="'저자: ' + ${book.author}"></span><br />
-                        <span th:text="'출판사: ' + ${book.publisher}"></span><br />
+                        <span th:text="'저자: ' + ${book.author}"></span>
+                        <span th:text="'출판사: ' + ${book.publisher}"></span>
                         <span th:text="'출판일: ' + (${book.publishedDate} != null ? ${book.publishedDate} : '정보 없음')"></span>
                     </p>
                     <p class="text-muted" th:text="'등록일: ' + ${book.createdAt}"></p>
@@ -37,10 +36,11 @@
     </div>
 
 </div>
-    <div class="alert alert-warning text-center" role="alert" th:unless="${#lists.size(list)} > 0">
-        조회된 결과가 없습니다.
-    </div>
+
+<div class="alert alert-warning text-center" role="alert" th:unless="${#lists.size(list)} > 0">
+    조회된 결과가 없습니다.
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

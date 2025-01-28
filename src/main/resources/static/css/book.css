@@ -1,27 +1,7 @@
 
-.book-card {
-    margin-bottom: 20px;
-}
-
-.book-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-}
-
-.book-info {
-    font-size: 0.9rem;
-    color: #6c757d;
-}
-
-.container {
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-h2 {
-    font-size: 2rem;
-    color: #333;
-    font-weight: bold;
+.book-card a, .book-card a span, .book-card a p {
+    text-decoration: none !important;
+    color: inherit;
 }
 
 /* 책 카드 */
@@ -29,48 +9,61 @@ h2 {
     border: 1px solid #e0e0e0;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    overflow: hidden;
 }
 
+/* 책 카드 호버  */
 .book-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
+
 
 /* 책 제목 */
 .book-title {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
+    color: #333; /
+    margin-bottom: 15px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    background-color: #e0f7fa;
+    padding: 5px;
+    border-radius: 5px;
 }
 
-/* 책 정보  */
+/* 책 정보 */
 .book-info {
     font-size: 1rem;
-    color: #777;
+    color: #6c757d;
+    text-align: center;
 }
 
 .book-info span {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 /* 책 등록일 */
 .book-card .text-muted {
     font-size: 0.9rem;
     color: #aaa;
-    margin-top: 10px;
+    margin-top: 15px;
+    text-align: left; /* 왼쪽 정렬 */
+    margin-top: auto; /* 도서 카드 아래쪽으로 위치하도록 배치 */
+    text-align: center;
 }
-
 /* 경고 메시지 */
 .alert-warning {
     background-color: #f8d7da;
     border-color: #f5c6cb;
     color: #721c24;
     font-weight: bold;
+    margin-top: 20px;
 }
 
 /* 반응형 */
@@ -80,10 +73,19 @@ h2 {
     }
 
     .book-title {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .book-info {
         font-size: 0.9rem;
     }
+}
+/* h2 제목 스타일 */
+h2 {
+    font-size: 2.5rem; /* 글씨 크기 더 크게 */
+    color: #333; /* 텍스트 색상 */
+    font-weight: bold; /* 굵은 글씨 */
+    background: linear-gradient(to right, #CDECFA,#FAFABE); /* 그라데이션 배경 */
+    padding: 10px 20px; /* 글씨 주변 여백 */
+    border-radius: 8px; /* 둥근 모서리 */
 }

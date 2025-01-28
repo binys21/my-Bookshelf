@@ -16,7 +16,7 @@ public class BookImageServiceImpl implements BookImageService {
     }
     @Override
     public BookImgDto getBookImageById(int imageId) {
-        bookImageMapper.getBookImageById(imageId);
+        return bookImageMapper.getBookImageById(imageId);
     }
 
 }
