@@ -10,7 +10,7 @@
 <div class="container my-4">
   <h2 class="text-center mb-4">도서 정보 수정</h2>
   <form th:action="@{/book/update}" method="post">
-    <input type="hidden" name="id" th:value="${book.bookId}"/>
+    <input type="hidden" name="bookId" th:value="${book.bookId}"/>
     <div class="mb-3">
       <label for="title" class="form-label">도서 제목</label>
       <input type="text" class="form-control" id="title" name="title" th:value="${book.title}" required>

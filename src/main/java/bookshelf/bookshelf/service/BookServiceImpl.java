@@ -33,6 +33,7 @@ public class BookServiceImpl implements BookService {
     }
     @Override
     public void updateBook(BookDto bookDto) {
+        System.out.println("Updating book: " + bookDto);
         bookMapper.updateBook(bookDto);
     }
 }

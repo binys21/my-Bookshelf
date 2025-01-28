@@ -58,7 +58,7 @@
     </delete>
 
     <update id="updateBook" parameterType="bookshelf.bookshelf.dto.BookDto">
-        UPDATE books
+        UPDATE Books
         SET
             title = #{title},
             author = #{author},
