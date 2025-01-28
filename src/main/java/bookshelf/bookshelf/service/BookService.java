@@ -10,4 +10,6 @@ public interface BookService {
     BookDto selectBookDetail(int bookId);
 
     void deleteBook(int bookId);
+
+    void updateBook(BookDto bookDto);
 }

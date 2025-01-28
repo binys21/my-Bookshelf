@@ -31,4 +31,8 @@ public class BookServiceImpl implements BookService {
     public void deleteBook(int bookId){
         bookMapper.deleteBook(bookId);
     }
+    @Override
+    public void updateBook(BookDto bookDto) {
+        bookMapper.updateBook(bookDto);
+    }
 }

@@ -39,4 +39,18 @@
         WHERE id=#{bookId}
     </delete>
 
+    <update id="updateBook" parameterType="BookDto">
+        UPDATE books
+        SET
+            title = #{title},
+            author = #{author},
+            publisher = #{publisher},
+            published_date = #{publishedDate},
+            isbn = #{isbn},
+            description = #{description},
+            updated_at = NOW()
+        WHERE book_id = #{bookId}
+    </update>
+
+
 </mapper>

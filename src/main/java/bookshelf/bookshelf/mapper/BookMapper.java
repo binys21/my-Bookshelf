@@ -11,4 +11,6 @@ public interface BookMapper {
     void insertBook(BookDto bookDto);
     BookDto selectBookDetail(int bookId);
     void deleteBook(int bookId);
+
+    void updateBook(BookDto bookDto);
 }

@@ -5,6 +5,7 @@ import bookshelf.bookshelf.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -46,6 +47,19 @@ public class BookController {
         ModelAndView mv =new ModelAndView("book/bookDetail");
         mv.addObject("book",bookDto);
         return mv;
+    }
+    //수정페이지로 이동
+    @GetMapping("/book/update/{bookId}")
+    public String openUpdateBookPage(@PathVariable("bookId") int bookId, Model model) throws Exception {
+        BookDto bookDto = bookService.selectBookDetail(bookId);
+        model.addAttribute("book", bookDto);
+        return "book/update"; // 수정 페이지 뷰 파일을 반환
+    }
+
+    @PostMapping("/book/update")
+    public String updateBook(@ModelAttribute BookDto bookDto) throws Exception {
+        bookService.updateBook(bookDto);
+        return "redirect:/book/openBookList";
     }
 
     //삭제 요청 처리
