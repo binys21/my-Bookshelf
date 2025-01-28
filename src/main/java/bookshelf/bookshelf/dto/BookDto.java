@@ -14,5 +14,6 @@ public class BookDto {
     private String description;
     private String createdAt; // 생성 시각 (String으로 변경)
     private String updatedAt; // 수정 시각
+
     private String imageUrl; // 이미지 주소
 }

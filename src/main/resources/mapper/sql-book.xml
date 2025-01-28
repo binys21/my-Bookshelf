@@ -7,12 +7,24 @@
     </resultMap>
 
     <select id="selectBookList" resultMap="bookResultMap">
-        select book_id, title, author, publisher,
-               date_format(published_date, '%Y-%m-%d') as published_date,
-               date_format(created_at, '%Y-%m-%d') as createdAt
-        from Books
-        order by book_id desc
+        SELECT
+            b.book_id AS bookId,
+            b.title,
+            b.author,
+            b.publisher,
+            DATE_FORMAT(b.published_date, '%Y-%m-%d') AS publishedDate,
+            DATE_FORMAT(b.created_at, '%Y-%m-%d') AS createdAt,
+            bi.image_url AS imageUrl
+        FROM
+            Books b
+                LEFT JOIN
+            BookImages bi
+            ON
+                b.book_id = bi.book_id
+        ORDER BY
+            b.book_id DESC
     </select>
+
 
     <insert id="insertBook" parameterType="bookshelf.bookshelf.dto.BookDto">
         INSERT INTO Books (title, author, publisher, published_date,isbn,description)
@@ -20,19 +32,25 @@
     </insert>
 
     <select id="selectBookDetail" parameterType="int" resultType="bookshelf.bookshelf.dto.BookDto">
-        select
-            book_id as bookId,
-            title,
-            author,
-            publisher,
-            published_date as publishedDate,
-            isbn,
-            description
-        from Books
-        where book_id = #{bookId}
-          and title is not null
-          and author is not null
+        SELECT
+            b.book_id AS bookId,
+            b.title,
+            b.author,
+            b.publisher,
+            b.published_date AS publishedDate,
+            b.isbn,
+            b.description,
+            bi.image_url AS imageUrl
+        FROM
+            Books b
+                LEFT JOIN
+            BookImages bi
+            ON
+                b.book_id = bi.book_id
+        WHERE
+            b.book_id = #{bookId}
     </select>
+
 
     <delete id="deleteBook" parameterType="int">
         DELETE from Books
@@ -51,6 +69,11 @@
             updated_at = NOW()
         WHERE book_id = #{bookId}
     </update>
+
+    <insert id="insertBookImage" parameterType="bookshelf.bookshelf.dto.BookImgDto">
+        INSERT INTO BookImages (book_id,image_url)
+        VALUES (#{bookId}, #{imageUrl});
+    </insert>
 
 
 </mapper>

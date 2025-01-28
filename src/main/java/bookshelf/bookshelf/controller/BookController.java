@@ -1,20 +1,27 @@
 package bookshelf.bookshelf.controller;
 
 import bookshelf.bookshelf.dto.BookDto;
+import bookshelf.bookshelf.dto.BookImgDto;
+import bookshelf.bookshelf.service.BookImageService;
 import bookshelf.bookshelf.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
 import java.util.List;
 
 @Controller
 public class BookController {
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private BookImageService bookImageService;
     //도서 목록 조회
     @GetMapping("/book/openBookList")
     public ModelAndView openBookList() throws Exception {
@@ -68,6 +75,30 @@ public class BookController {
         bookService.deleteBook(bookId);
         return "redirect:/book/openBookList";
     }
+
+    //파일 업로드
+    @PostMapping("/book/uloadImage/{bookId}")
+    public String uploadImage(@PathVariable("bookId")int bookId,
+                              @RequestParam("image") MultipartFile imageFile)  throws Exception {
+        //업로드된 파일 저장할 경로 설정
+        String uploadDirectory="/Users/binys/Desktop/upload";
+        //파일 명으로 파일 경로 설정
+        String fileName=imageFile.getOriginalFilename();
+        String filePath=uploadDirectory+"/"+fileName;
+
+        File destinationFile=new File(filePath);
+        imageFile.transferTo(destinationFile);
+
+        BookImgDto bookImgDto = new BookImgDto();
+        bookImgDto.setImageId(bookId);
+        bookImgDto.setImageUrl(filePath);  // 이미지 URL 저장
+
+        bookImageService.saveBookImage(bookImgDto);
+        return "redirect:/book/openBookDetail/" + bookId;
+
+
+    }
+
 
 
 }
