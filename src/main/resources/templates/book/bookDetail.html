@@ -20,7 +20,7 @@
             <form th:action="@{/book/uploadImage}" method="post" enctype="multipart/form-data" class="mt-3">
                 <input type="hidden" name="bookId" th:value="${book.bookId}" />
                 <div class="mb-3">
-                    <label for="file" class="form-label">이미지 업로드</label>
+                    <label for="file" class="form-label">서평 업로드</label>
                     <input type="file" name="file" id="file" class="form-control" accept="image/*" required />
                 </div>
                 <button type="submit" class="btn btn-primary">업로드</button>

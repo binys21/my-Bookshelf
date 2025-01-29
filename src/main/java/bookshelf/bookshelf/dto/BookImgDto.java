@@ -6,4 +6,5 @@ import lombok.Data;
 public class BookImgDto {
     private int imageId;
     private String imageUrl;
+    private int bookId;
 }

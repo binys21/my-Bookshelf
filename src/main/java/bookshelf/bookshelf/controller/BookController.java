@@ -46,8 +46,8 @@ public class BookController {
     }
     //도서 등록 처리
     @PostMapping("/book/register")
-    public String registerBook(@ModelAttribute BookDto bookDto) throws Exception {
-        bookService.insertBook(bookDto);
+    public String registerBook(@ModelAttribute BookDto bookDto,@ModelAttribute BookImgDto bookImgDto) throws Exception {
+        bookService.insertBook(bookDto,bookImgDto);
         return "redirect:/book/openBookList"; //도서 목록 페이지로 리다리엑트
     }
 

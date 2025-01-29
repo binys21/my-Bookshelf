@@ -26,9 +26,15 @@
     </select>
 
 
-    <insert id="insertBook" parameterType="bookshelf.bookshelf.dto.BookDto">
-        INSERT INTO Books (title, author, publisher, published_date,isbn,description)
-        VALUES (#{title}, #{author}, #{publisher}, #{publishedDate},#{isbn},#{description})
+    <insert id="insertBook" parameterType="bookshelf.bookshelf.dto.BookDto" useGeneratedKeys="true" keyProperty="bookId">
+        INSERT INTO Books (title, author, publisher, published_date, isbn, description)
+        VALUES (#{title}, #{author}, #{publisher}, #{publishedDate}, #{isbn}, #{description})
+    </insert>
+
+
+    <insert id="insertBookImage" parameterType="bookshelf.bookshelf.dto.BookImgDto">
+        INSERT INTO BookImages (book_id,image_url)
+        VALUES (#{bookId}, #{imageUrl});
     </insert>
 
     <select id="selectBookDetail" parameterType="int" resultType="bookshelf.bookshelf.dto.BookDto">
@@ -54,7 +60,7 @@
 
     <delete id="deleteBook" parameterType="int">
         DELETE from Books
-        WHERE id=#{bookId}
+        WHERE book_id=#{bookId}
     </delete>
 
     <update id="updateBook" parameterType="bookshelf.bookshelf.dto.BookDto">
@@ -70,10 +76,7 @@
         WHERE book_id = #{bookId}
     </update>
 
-    <insert id="insertBookImage" parameterType="bookshelf.bookshelf.dto.BookImgDto">
-        INSERT INTO BookImages (book_id,image_url)
-        VALUES (#{bookId}, #{imageUrl});
-    </insert>
+
 
     <!-- 이미지 ID로 조회 -->
     <select id="getBookImageById" resultType="bookshelf.bookshelf.dto.BookImgDto">

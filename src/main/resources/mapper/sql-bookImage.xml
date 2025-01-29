@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bookshelf.bookshelf.mapper.BookImageMapper">
+
+    <insert id="insertBookImage" parameterType="bookshelf.bookshelf.dto.BookImgDto">
+        INSERT INTO BookImages (book_id, image_url)
+        VALUES (#{bookId}, #{imageUrl});
+    </insert>
+
+    <select id="getBookImageById" resultType="bookshelf.bookshelf.dto.BookImgDto">
+        SELECT * FROM BookImages WHERE image_id = #{imageId}
+    </select>
+
+</mapper>
