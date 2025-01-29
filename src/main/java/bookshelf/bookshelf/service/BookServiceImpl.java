@@ -2,6 +2,7 @@ package bookshelf.bookshelf.service;
 
 import bookshelf.bookshelf.dto.BookDto;
 import bookshelf.bookshelf.dto.BookImgDto;
+import bookshelf.bookshelf.dto.ReviewFileDto;
 import bookshelf.bookshelf.mapper.BookImageMapper;
 import bookshelf.bookshelf.mapper.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,18 @@ public class BookServiceImpl implements BookService {
     }
     @Override
     public BookDto selectBookDetail(int bookId){
-        return bookMapper.selectBookDetail(bookId);
+        BookDto bookDto=bookMapper.selectBookDetail(bookId);
+        List<ReviewFileDto> bookFileInfoList= bookMapper.selectBookFileList(bookId);
+        bookDto.setFileInfoList(bookFileInfoList);
+
+        return bookDto;
     }
+
     @Override
     public void deleteBook(int bookId){
         bookMapper.deleteBook(bookId);
     }
+
     @Transactional
     @Override
     public void updateBook(BookDto bookDto,BookImgDto bookImgDto) {
@@ -45,4 +52,5 @@ public class BookServiceImpl implements BookService {
         bookImgDto.setBookId(bookDto.getBookId());
         bookImageMapper.updateBookImage(bookImgDto);
     }
+
 }

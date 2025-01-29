@@ -4,6 +4,7 @@ import bookshelf.bookshelf.common.FileUtils;
 import bookshelf.bookshelf.dto.BookDto;
 import bookshelf.bookshelf.dto.BookImgDto;
 import bookshelf.bookshelf.dto.ReviewFileDto;
+import bookshelf.bookshelf.mapper.BookMapper;
 import bookshelf.bookshelf.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,6 +28,9 @@ public class BookController {
 
     @Autowired
     private FileUtils fileUtils;
+    @Autowired
+    private BookMapper bookMapper;
+
     //도서 목록 조회
     @GetMapping("/book/openBookList")
     public ModelAndView openBookList() throws Exception {
@@ -54,8 +59,6 @@ public class BookController {
     public ModelAndView openBookDetail(@RequestParam(value = "bookId", required = true)
                                            int bookId) throws Exception {
         BookDto bookDto = bookService.selectBookDetail(bookId);
-        System.out.println("Received bookId: " + bookId);
-
         ModelAndView mv =new ModelAndView("book/bookDetail");
         mv.addObject("book",bookDto);
         return mv;
@@ -88,9 +91,10 @@ public class BookController {
                                Model model)  {
         try{
             List<ReviewFileDto> fileInfoList = fileUtils.parseFileInfo(bookId,request);
-            model.addAttribute("fileInfoList", fileInfoList);
-            model.addAttribute("bookId", bookId);
 
+            if(!CollectionUtils.isEmpty(fileInfoList)){
+                bookMapper.insertReviewFileList(fileInfoList);
+            }
             return "redirect:/book/openBookDetail?bookId=" + bookId;
 
         }catch (Exception e){

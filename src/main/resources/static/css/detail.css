@@ -7,6 +7,10 @@
     padding: 30px;
     margin: 50px auto;
     max-width: 900px;
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 body {
@@ -39,15 +43,14 @@ h2 {
     padding: 20px;
     margin-top: 20px;
     border: 2px solid #ddd;
+    flex-grow: 1;
 }
 
 .button-group {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+    margin-top: 20px;
     display: flex;
     gap: 10px;
-    z-index: 999;
+    justify-content: flex-end;
 }
 
 .btn {

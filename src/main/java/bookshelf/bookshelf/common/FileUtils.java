@@ -40,6 +40,13 @@ public class FileUtils {
         while (fileTagNames.hasNext()) {
             String fileTagName = fileTagNames.next();
             List<MultipartFile> files = request.getFiles(fileTagName);
+
+
+            if (files.isEmpty()) {
+                System.out.println("파일이 업로드되지 않았습니다.");
+            }
+
+
             for (MultipartFile file : files) {
                 String storedFileName = Long.toString(System.nanoTime());
                 String storedFilePath = storedDir + "/" + storedFileName;
@@ -48,7 +55,7 @@ public class FileUtils {
                 ReviewFileDto dto = new ReviewFileDto();
                 dto.setBookId(bookId);
                 dto.setFileSize(Long.toString(file.getSize()));
-                dto.setOriginalFilename(file.getOriginalFilename());
+                dto.setOriginalFileName(file.getOriginalFilename());
                 dto.setStoredFilePath(storedFilePath);
                 fileInfoList.add(dto);
 
@@ -58,6 +65,8 @@ public class FileUtils {
                     file.transferTo(fileDir);  // 파일을 실제 디스크에 저장
                 } catch (IOException | IllegalStateException e) {
                     e.printStackTrace();
+                    throw new RuntimeException("파일 저장에 실패했습니다.", e);
+
 
                 }
             }

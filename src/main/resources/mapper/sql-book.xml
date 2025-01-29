@@ -31,6 +31,16 @@
         VALUES (#{title}, #{author}, #{publisher}, #{publishedDate}, #{isbn}, #{description})
     </insert>
 
+    <insert id="insertReviewFileList" parameterType="bookshelf.bookshelf.dto.ReviewFileDto">
+        insert into book_file
+            (book_id, original_file_name, stored_file_path, file_size,created_at)
+        values
+        <foreach collection="fileInfoList" item="item" separator=",">
+            (#{item.bookId}, #{item.originalFileName}, #{item.storedFilePath}, #{item.fileSize}, now())
+        </foreach>
+    </insert>
+
+
     <select id="selectBookDetail" parameterType="int" resultType="bookshelf.bookshelf.dto.BookDto">
         SELECT
             b.book_id AS bookId,
@@ -69,5 +79,13 @@
             updated_at = NOW()
         WHERE book_id = #{bookId}
     </update>
+
+    <select id="selectBookFileList" parameterType="int" resultType="bookshelf.bookshelf.dto.ReviewFileDto">
+        select idx,book_id,original_file_name,format(round(file_size/1024), 0) as file_size
+        from book_file
+        where book_id=#{bookId} and deleted_yn = 'N'
+    </select>
+
+
 
 </mapper>
