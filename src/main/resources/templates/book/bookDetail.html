@@ -16,12 +16,12 @@
             <!-- 책 이미지 -->
             <img th:src="${book.imageUrl}" alt="책 이미지" class="img-fluid rounded" onerror="this.src='/images/default-book.jpg'">
 
-            <!-- 이미지 업로드 폼 -->
-            <form th:action="@{/book/uploadImage}" method="post" enctype="multipart/form-data" class="mt-3">
+            <!-- 서평 파일 업로드 폼 -->
+            <form th:action="@{/book/uploadReview}" method="post" enctype="multipart/form-data" class="mt-3">
                 <input type="hidden" name="bookId" th:value="${book.bookId}" />
                 <div class="mb-3">
-                    <label for="file" class="form-label">서평 업로드</label>
-                    <input type="file" name="file" id="file" class="form-control" accept="image/*" required />
+                    <label for="file" class="form-label">서평 업로드📝</label>
+                    <input type="file" name="file" id="file" class="form-control" required />
                 </div>
                 <button type="submit" class="btn btn-primary">업로드</button>
             </form>
@@ -30,14 +30,14 @@
         <div class="col-md-8">
             <!-- 책 정보 박스 -->
             <div class="book-info-box">
-                <h5>저자: <span th:text="${book.author}"></span></h5>
-                <h5>출판사: <span th:text="${book.publisher}"></span></h5>
-                <h5>출판일: <span th:text="${book.publishedDate}"></span></h5>
+                <h5>🙋🏻‍♀️️저자: <span th:text="${book.author}"></span></h5>
+                <h5>✍️출판사: <span th:text="${book.publisher}"></span></h5>
+                <h5>📚출판일: <span th:text="${book.publishedDate}"></span></h5>
             </div>
 
             <!-- 책 설명 -->
             <div class="description-box">
-                <h5>설명:</h5>
+                <h5>설명💬</h5>
                 <p th:text="${book.description}"></p>
             </div>
 
