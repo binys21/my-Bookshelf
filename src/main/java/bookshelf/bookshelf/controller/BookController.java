@@ -1,7 +1,9 @@
 package bookshelf.bookshelf.controller;
 
+import bookshelf.bookshelf.common.FileUtils;
 import bookshelf.bookshelf.dto.BookDto;
 import bookshelf.bookshelf.dto.BookImgDto;
+import bookshelf.bookshelf.dto.ReviewFileDto;
 import bookshelf.bookshelf.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -12,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -20,6 +23,9 @@ import java.util.List;
 public class BookController {
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private FileUtils fileUtils;
     //도서 목록 조회
     @GetMapping("/book/openBookList")
     public ModelAndView openBookList() throws Exception {
@@ -73,6 +79,26 @@ public class BookController {
     public String deleteBook(@PathVariable("bookId") int bookId) throws Exception {
         bookService.deleteBook(bookId);
         return "redirect:/book/openBookList";
+    }
+
+    //파일 업로드
+    @PostMapping("/book/uploadReview")
+    public String uploadReview(@RequestParam("bookId") int bookId,
+                               MultipartHttpServletRequest request,
+                               Model model)  {
+        try{
+            List<ReviewFileDto> fileInfoList = fileUtils.parseFileInfo(bookId,request);
+            model.addAttribute("fileInfoList", fileInfoList);
+            model.addAttribute("bookId", bookId);
+
+            return "redirect:/book/openBookDetail?bookId=" + bookId;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            model.addAttribute("error","파일 업로드 실패");
+            return "redirect:/book/openBookDetail?bookId=" + bookId;
+        }
+
     }
 
 
