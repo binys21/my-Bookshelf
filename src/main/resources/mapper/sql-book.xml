@@ -31,12 +31,6 @@
         VALUES (#{title}, #{author}, #{publisher}, #{publishedDate}, #{isbn}, #{description})
     </insert>
 
-
-    <insert id="insertBookImage" parameterType="bookshelf.bookshelf.dto.BookImgDto">
-        INSERT INTO BookImages (book_id,image_url)
-        VALUES (#{bookId}, #{imageUrl});
-    </insert>
-
     <select id="selectBookDetail" parameterType="int" resultType="bookshelf.bookshelf.dto.BookDto">
         SELECT
             b.book_id AS bookId,
@@ -75,13 +69,5 @@
             updated_at = NOW()
         WHERE book_id = #{bookId}
     </update>
-
-
-
-    <!-- 이미지 ID로 조회 -->
-    <select id="getBookImageById" resultType="bookshelf.bookshelf.dto.BookImgDto">
-        SELECT * FROM BookImages WHERE image_id = #{imageId}
-    </select>
-
 
 </mapper>
