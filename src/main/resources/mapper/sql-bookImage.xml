@@ -11,4 +11,13 @@
         SELECT * FROM BookImages WHERE image_id = #{imageId}
     </select>
 
+    <update id="updateBookImage" parameterType="bookshelf.bookshelf.dto.BookImgDto">
+        UPDATE BookImages
+        SET image_url = #{imageUrl}
+        WHERE book_id = #{bookId}
+    </update>
+
+
+
+
 </mapper>

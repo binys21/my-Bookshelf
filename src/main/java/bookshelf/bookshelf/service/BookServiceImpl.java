@@ -32,16 +32,17 @@ public class BookServiceImpl implements BookService {
     }
     @Override
     public BookDto selectBookDetail(int bookId){
-        System.out.println("Fetching book details for bookId: " + bookId);
         return bookMapper.selectBookDetail(bookId);
     }
     @Override
     public void deleteBook(int bookId){
         bookMapper.deleteBook(bookId);
     }
+    @Transactional
     @Override
-    public void updateBook(BookDto bookDto) {
-        System.out.println("Updating book: " + bookDto);
+    public void updateBook(BookDto bookDto,BookImgDto bookImgDto) {
         bookMapper.updateBook(bookDto);
+        bookImgDto.setBookId(bookDto.getBookId());
+        bookImageMapper.updateBookImage(bookImgDto);
     }
 }

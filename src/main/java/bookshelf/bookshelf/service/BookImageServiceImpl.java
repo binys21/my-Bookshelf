@@ -1,5 +1,6 @@
 package bookshelf.bookshelf.service;
 
+import bookshelf.bookshelf.dto.BookDto;
 import bookshelf.bookshelf.dto.BookImgDto;
 import bookshelf.bookshelf.mapper.BookImageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,11 @@ public class BookImageServiceImpl implements BookImageService {
     @Override
     public BookImgDto getBookImageById(int imageId) {
         return bookImageMapper.getBookImageById(imageId);
+    }
+
+    @Override
+    public void updateBookImage(BookImgDto bookImgDto){
+        bookImageMapper.updateBookImage(bookImgDto);
     }
 
 }

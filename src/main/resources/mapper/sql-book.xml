@@ -63,7 +63,7 @@
         WHERE book_id=#{bookId}
     </delete>
 
-    <update id="updateBook" parameterType="bookshelf.bookshelf.dto.BookDto">
+    <update id="updateBook" parameterType="bookshelf.bookshelf.dto.BookDto"  useGeneratedKeys="true" keyProperty="bookId">
         UPDATE Books
         SET
             title = #{title},

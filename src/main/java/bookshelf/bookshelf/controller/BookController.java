@@ -71,8 +71,8 @@ public class BookController {
     }
     //수정 요청 처리
     @PostMapping("/book/update")
-    public String updateBook(@ModelAttribute BookDto bookDto) throws Exception {
-        bookService.updateBook(bookDto);
+    public String updateBook(@ModelAttribute BookDto bookDto,@ModelAttribute BookImgDto bookImgDto) throws Exception {
+        bookService.updateBook(bookDto,bookImgDto);
         return "redirect:/book/openBookList";
     }
 

@@ -36,6 +36,10 @@
       <label for="description" class="form-label">도서 설명</label>
       <textarea class="form-control" id="description" name="description" rows="3" th:text="${book.description}"></textarea>
     </div>
+    <div class="mb-3">
+      <label for="imageUrl" class="form-label">이미지 주소</label>
+      <input type="text" class="form-control" id="imageUrl" name="imageUrl" th:value="${book.imageUrl}">
+    </div>
     <button type="submit" class="btn btn-primary">저장</button>
   </form>
 </div>
