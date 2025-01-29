@@ -1,14 +1,18 @@
-/* 전체 컨테이너 */
+
+
 .container {
-    max-width: 900px;
-    margin: 0 auto;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 30px;
-    margin-top: 50px;
-    position: relative;
-    padding-bottom: 80px;
+    margin: 50px auto;
+    max-width: 900px;
+}
+
+body {
+    background: linear-gradient(to right, #C8FAC8,#FAFABE);
+    margin: 0;
+    padding: 0;
 }
 
 /* 도서 제목 */

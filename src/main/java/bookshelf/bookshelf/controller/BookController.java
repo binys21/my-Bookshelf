@@ -35,8 +35,9 @@ public class BookController {
 
         List<BookDto> list = bookService.selectBookList();
         mv.addObject("list",list);
-
         return mv;
+
+
     }
     //도서 등록 페이지
     @GetMapping("/book/register")

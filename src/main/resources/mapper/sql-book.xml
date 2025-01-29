@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bookshelf.bookshelf.mapper.BookMapper">
+
     <resultMap id="bookResultMap" type="bookshelf.bookshelf.dto.BookDto">
         <result property="publishedDate" column="published_date" jdbcType="VARCHAR" />
-        <result property="createdDt" column="created_at" jdbcType="VARCHAR" />
+        <result property="createdAt" column="created_at" jdbcType="VARCHAR" />
     </resultMap>
-
     <select id="selectBookList" resultMap="bookResultMap">
         SELECT
             b.book_id AS bookId,
             b.title,
             b.author,
             b.publisher,
-            DATE_FORMAT(b.published_date, '%Y-%m-%d') AS publishedDate,
-            DATE_FORMAT(b.created_at, '%Y-%m-%d') AS createdAt,
+            b.published_date,
+            b.created_at,
             bi.image_url AS imageUrl
         FROM
             Books b
