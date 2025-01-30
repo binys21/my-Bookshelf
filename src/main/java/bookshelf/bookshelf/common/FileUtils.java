@@ -48,16 +48,21 @@ public class FileUtils {
 
 
             for (MultipartFile file : files) {
-                String storedFileName = Long.toString(System.nanoTime());
+                String originalFileName = file.getOriginalFilename();
+                String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+                String storedFileName = System.nanoTime() + extension;
                 String storedFilePath = storedDir + "/" + storedFileName;
 
                 // DTO에 파일 정보 저장
                 ReviewFileDto dto = new ReviewFileDto();
                 dto.setBookId(bookId);
-                dto.setFileSize(Long.toString(file.getSize()));
+                dto.setFileSize(file.getSize());
                 dto.setOriginalFileName(file.getOriginalFilename());
                 dto.setStoredFilePath(storedFilePath);
+
+
                 fileInfoList.add(dto);
+
 
                 fileDir = new File(storedFilePath);
 

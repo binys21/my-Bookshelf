@@ -8,5 +8,5 @@ public class ReviewFileDto {
     private int bookId;
     private String originalFileName;
     private String storedFilePath;
-    private String fileSize;
+    private long fileSize;
 }

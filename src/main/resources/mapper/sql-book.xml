@@ -31,7 +31,7 @@
         VALUES (#{title}, #{author}, #{publisher}, #{publishedDate}, #{isbn}, #{description})
     </insert>
 
-    <insert id="insertReviewFileList" parameterType="bookshelf.bookshelf.dto.ReviewFileDto">
+    <insert id="insertReviewFileList" parameterType="bookshelf.bookshelf.dto.ReviewFileDto" useGeneratedKeys="true" keyProperty="idx">
         insert into book_file
             (book_id, original_file_name, stored_file_path, file_size,created_at)
         values
@@ -80,10 +80,19 @@
         WHERE book_id = #{bookId}
     </update>
 
-    <select id="selectBookFileList" parameterType="int" resultType="bookshelf.bookshelf.dto.ReviewFileDto">
-        select idx,book_id,original_file_name,format(round(file_size/1024), 0) as file_size
-        from book_file
-        where book_id=#{bookId} and deleted_yn = 'N'
+    <resultMap id="ReviewFileResultMap" type="bookshelf.bookshelf.dto.ReviewFileDto">
+        <id property="idx" column="idx"/>
+        <result property="bookId" column="book_id"/>
+        <result property="originalFileName" column="original_file_name"/>
+        <result property="storedFilePath" column="stored_file_path"/>
+        <result property="fileSize" column="file_size"/>
+    </resultMap>
+
+    <select id="selectBookFileList" parameterType="int" resultMap="ReviewFileResultMap">
+        SELECT idx, book_id, original_file_name, stored_file_path, format(round(file_size/1024), 0) as file_size
+
+        FROM book_file
+        WHERE book_id = #{bookId} AND deleted_yn = 'N'
     </select>
 
 

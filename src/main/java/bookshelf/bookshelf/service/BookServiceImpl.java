@@ -34,8 +34,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDto selectBookDetail(int bookId){
         BookDto bookDto=bookMapper.selectBookDetail(bookId);
-        List<ReviewFileDto> bookFileInfoList= bookMapper.selectBookFileList(bookId);
-        bookDto.setFileInfoList(bookFileInfoList);
+        List<ReviewFileDto> fileInfoList= bookMapper.selectBookFileList(bookId);
+
+        bookDto.setFileInfoList(fileInfoList);
 
         return bookDto;
     }

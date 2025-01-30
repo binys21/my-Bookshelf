@@ -59,6 +59,7 @@ public class BookController {
     public ModelAndView openBookDetail(@RequestParam(value = "bookId", required = true)
                                            int bookId) throws Exception {
         BookDto bookDto = bookService.selectBookDetail(bookId);
+
         ModelAndView mv =new ModelAndView("book/bookDetail");
         mv.addObject("book",bookDto);
         return mv;
