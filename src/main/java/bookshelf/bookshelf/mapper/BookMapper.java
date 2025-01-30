@@ -15,4 +15,6 @@ public interface BookMapper {
     void updateBook(BookDto bookDto);
     List<ReviewFileDto> selectBookFileList(int bookId);
     void insertReviewFileList(List<ReviewFileDto> fileInfoList);
+
+    ReviewFileDto selectBookFile(int idx);
 }

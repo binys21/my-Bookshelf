@@ -31,7 +31,9 @@
                 <h6>📂 첨부파일 목록</h6>
                 <ul>
                     <li th:each="file : ${book.fileInfoList}">
-                        <a th:href="@{${file.storedFilePath}}" th:text="|${file.originalFileName} (${file.fileSize}kb)|"></a>
+                        <a th:href="@{/book/downloadBookFile.do(idx=${file.idx})}"
+                           th:text="|${file.originalFileName} (${file.fileSize}kb)|">
+                        </a>
                     </li>
                 </ul>
             </div>

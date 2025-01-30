@@ -11,6 +11,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -103,6 +108,26 @@ public class BookController {
             model.addAttribute("error","파일 업로드 실패");
             return "redirect:/book/openBookDetail?bookId=" + bookId;
         }
+
+    }
+
+    //파일 다운로드
+    @GetMapping("/book/downloadBookFile.do")
+    public ResponseEntity<Resource> downloadBookFile(@RequestParam("idx") int idx) throws Exception {
+        //파일 정보 조회
+        ReviewFileDto fileDto=bookService.getBookFile(idx);
+
+        //파일 경로 가져오기
+        Path filePath= Paths.get(fileDto.getStoredFilePath());
+        Resource resource=new UrlResource(filePath.toUri());
+
+        //헤더 설정
+        String contentDisposition ="attachment; filename=\""
+                + URLEncoder.encode(fileDto.getOriginalFileName(), StandardCharsets.UTF_8)+ "\"";
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
+                .body(resource);
 
     }
 

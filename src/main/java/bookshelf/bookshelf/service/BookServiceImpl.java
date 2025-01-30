@@ -54,4 +54,9 @@ public class BookServiceImpl implements BookService {
         bookImageMapper.updateBookImage(bookImgDto);
     }
 
+    @Override
+    public ReviewFileDto getBookFile(int idx){
+        return bookMapper.selectBookFile(idx);
+    }
+
 }

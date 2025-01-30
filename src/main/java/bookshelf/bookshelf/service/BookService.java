@@ -15,4 +15,5 @@ public interface BookService {
     void updateBook(BookDto bookDto,BookImgDto bookImgDto);
 
 
+    ReviewFileDto getBookFile(int idx);
 }

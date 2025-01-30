@@ -95,6 +95,13 @@
         WHERE book_id = #{bookId} AND deleted_yn = 'N'
     </select>
 
+    <select id="selectBookFile" parameterType="int" resultMap="ReviewFileResultMap">
+        SELECT idx, book_id, original_file_name, stored_file_path, file_size
+        FROM book_file
+        WHERE idx = #{idx} AND deleted_yn = 'N'
+    </select>
+
+
 
 
 </mapper>
