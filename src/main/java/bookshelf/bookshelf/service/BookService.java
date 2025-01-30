@@ -16,4 +16,6 @@ public interface BookService {
 
 
     ReviewFileDto getBookFile(int idx);
+
+    boolean deleteBookFile(int idx, int bookId);
 }

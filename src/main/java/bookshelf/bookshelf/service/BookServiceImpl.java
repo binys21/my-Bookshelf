@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -58,5 +62,27 @@ public class BookServiceImpl implements BookService {
     public ReviewFileDto getBookFile(int idx){
         return bookMapper.selectBookFile(idx);
     }
+
+    @Override
+    public boolean deleteBookFile(int idx, int bookId) {
+        try {
+            // 파일 정보를 먼저 조회하여 삭제할 파일 경로 확인
+            ReviewFileDto file = bookMapper.selectBookFile(idx);
+            if (file != null && file.getBookId() == bookId) {
+                // 파일 삭제
+                Path path = Paths.get(file.getStoredFilePath());
+                Files.deleteIfExists(path);  // 파일 삭제
+
+                // DB에서 파일 정보 삭제
+                bookMapper.deleteBookFile(idx);
+                return true;
+            }
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 }

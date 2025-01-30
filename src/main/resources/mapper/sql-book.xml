@@ -101,6 +101,12 @@
         WHERE idx = #{idx} AND deleted_yn = 'N'
     </select>
 
+    <delete id="deleteBookFile" parameterType="int">
+        DELETE FROM book_file
+        WHERE idx = #{idx}
+    </delete>
+
+
 
 
 

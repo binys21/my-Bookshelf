@@ -17,4 +17,6 @@ public interface BookMapper {
     void insertReviewFileList(List<ReviewFileDto> fileInfoList);
 
     ReviewFileDto selectBookFile(int idx);
+
+    void deleteBookFile(int idx);
 }

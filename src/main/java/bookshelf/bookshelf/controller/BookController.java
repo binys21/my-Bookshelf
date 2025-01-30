@@ -11,6 +11,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,9 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class BookController {
@@ -129,6 +132,25 @@ public class BookController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
                 .body(resource);
 
+    }
+
+    //파일 삭제
+    @DeleteMapping("/book/deleteBookFile")
+    public ResponseEntity<Map<String,Object>> deleteBookFile(@RequestParam int idx,@RequestParam int bookId){
+        Map<String,Object> response = new HashMap<>();
+        try{
+            boolean result=bookService.deleteBookFile(idx,bookId);
+            if(result){
+                response.put("success",true);
+                return ResponseEntity.ok(response);
+            }else{
+                response.put("success",false);
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+            }
+        }catch (Exception e){
+            response.put("success",false);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
     }
 
 
