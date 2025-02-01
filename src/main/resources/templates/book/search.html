@@ -1,0 +1,36 @@
+<form id="searchForm">
+  <input type="text" id="query" placeholder="책 제목을 입력하세요"/>
+  <button type="submit">검색</button>
+</form>
+
+<div id="searchResults"></div>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+  $(document).ready(function (){
+    $("#searchForm").submit(function(event){
+      event.preventDefault();
+      var query=$("#query").val();
+
+      $.ajax({
+        url:"/book/search",
+        type:"GET",
+        data:{query:query},
+        success:function(response){
+          var books=JSON.parse(response).items;
+          var html="";
+          books.forEach(function(book){
+            html += "<p><strong>" + book.title + "</strong> - " + book.author + "</p>";
+
+          });
+          $("#searchResults").html(html);
+        },
+        error:function(){
+          $("#searchResults").html("<p>검색 실패!</p>");
+        }
+      });
+
+    });
+  });
+</script>
